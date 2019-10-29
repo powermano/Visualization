@@ -153,7 +153,7 @@ class AntiSpoofingPredictor():
         save_string += ' {}'.format(float(pred))
         save_string += ' {}'.format(float(prob))
         # set feature
-        if self.config.save-feature:
+        if self.config.save_feature == '1':
             save_string += ' '
             save_string += ' '.join([str(x) for x in feature.tolist()])
 
@@ -203,7 +203,7 @@ class AntiSpoofingPredictor():
                     save_result.write(line)
             else:
                 save_result = open(self.config.save, 'w')
-                if self.config.save-badcase:
+                if self.config.save_badcase == '1':
                     save_bad_result = open('./badcase_outputs.txt', 'w')
                 has_saved_idx = 0
 
@@ -291,7 +291,7 @@ class AntiSpoofingPredictor():
                     self.fp += 1 if (this_label != 1.0 and this_pred == 1.0) else 0
                     self.fn += 1 if (this_label == 1.0 and this_pred != 1.0) else 0
 
-                    if self.config.save-badcase:
+                    if self.config.save_badcase == '1':
                         if this_label == 1.0 and this_pred != 1.0:
                             save_bad_string = self.get_save_string(img_info, this_pred, this_prob, this_feature)
                             save_bad_result.write(save_bad_string)
@@ -699,9 +699,9 @@ def parse_args():
     parser.add_argument('--expand-ratio', help='set expand ratio', default=1.0, type=float)
     parser.add_argument('--thresh', help='thresh', required=False, type=float, default=0.5)
     parser.add_argument('--is-qnn', help='whether to use qnn predict.', required=False, type=int, default=0)
-    parser.add_argument('--save-feature', help='whether to save feature for visualization', required=False, type=str,
+    parser.add_argument('--save_feature', help='whether to save feature for visualization', required=False, type=str,
                         default=False)
-    parser.add_argument('--save-badcase', help='whether to save badcase', required=False, type=str, default=False)
+    parser.add_argument('--save_badcase', help='whether to save badcase', required=False, type=str, default=False)
 
     return parser.parse_args()
 

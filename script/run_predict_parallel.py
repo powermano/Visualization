@@ -21,8 +21,8 @@ data type info:
 
 if __name__ == '__main__':
     is_parallel_run = True
-    save_feature = False
-    save_badcase = False
+    save_feature = '0'
+    save_badcase = '1'
 
     test_type = 'X1600_v2'
     test_file = '/home/users/tao.cai/Workspace/anti_spoofing/aiot_face_anti_spoofing_tools/predict/test_list/{}_test.txt'.format(

@@ -26,6 +26,6 @@ python ${now_dir}/../../../predict_with_feature.py \
     --data-type ${data_type} \
     --expand-ratio ${expand_ratio} \
     --is-qnn ${is_qnn} \
-    --save-feature ${save_feature} \
-    --save-badcase ${save_badcase}
+    --save_feature ${save_feature} \
+    --save_badcase ${save_badcase}
 
