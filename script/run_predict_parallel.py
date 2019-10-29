@@ -47,8 +47,10 @@ if __name__ == '__main__':
                 test_type, model, epoch, data_type, expand_ratio)
         else:
             prefix = model_dir + 'model-{}'.format(str(model))
-            work_dir = './results/{}/python3.4.5_0815_wobn_triplet_loss_margin-0.2_l2_wo_sum_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
-                test_type, model, epoch, data_type, expand_ratio)
+            work_dir = './results/{}/python3.4.5_0815_triplet_loss_fix_margin-0.2_awl_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
+                        test_type, model, epoch, data_type, expand_ratio)
+          #  work_dir = './results/{}/python3.4.5_0815_wobn_triplet_loss_margin-0.2_l2_wo_sum_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
+          #               test_type, model, epoch, data_type, expand_ratio)
         if not os.path.exists(work_dir):
             os.makedirs(work_dir)
         os.chdir(work_dir)
