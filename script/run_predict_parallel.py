@@ -56,7 +56,7 @@ if __name__ == '__main__':
         os.chdir(work_dir)
         now_dir = os.getcwd()
         print('work in ', os.getcwd())
-        command = 'sh {}/../../../predict.sh {} {} {} {} {} {} {} {} {} {} {} {}'.format(now_dir, test_file,
+        command = 'sh {}/../../../predict.sh {} {} {} {} {} {} {} {} {} {} {} {} {} {}'.format(now_dir, test_file,
                                                                                          save_file,
                                                                                          prefix,
                                                                                          epoch,
