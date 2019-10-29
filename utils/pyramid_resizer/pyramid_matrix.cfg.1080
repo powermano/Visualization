@@ -1,0 +1,197 @@
+fAlPHname = vision
+DumpDirName = ./pyramid_out/
+imageWidth = 1920
+imageHeight = 1080
+VideoMode = 0
+FrameNum =  1
+DumpPYMdata = 0
+DumpDEBUGdata = 0
+imgLayerDSEn =  31
+imgLayerUSEn = 63
+
+LayerDSROILeft00 =    0
+LayerDSROITop00 =    0
+LayerDSROIWidth00 =  930
+LayerDSROIHeight00 =  522
+LayerDSROISrcWidth00 = 1280
+LayerDSROISrcHeight00 =  720
+LayerDSFactor00 =  6
+
+LayerDSROILeft01 =    0
+LayerDSROITop01 =    0
+LayerDSROIWidth01 =  930
+LayerDSROIHeight01 =  522
+LayerDSROISrcWidth01 = 1280
+LayerDSROISrcHeight01 =  720
+LayerDSFactor01 =  6
+
+LayerDSROILeft02 =    0
+LayerDSROITop02 =    0
+LayerDSROIWidth02 =  930
+LayerDSROIHeight02 =  522
+LayerDSROISrcWidth02 = 1280
+LayerDSROISrcHeight02 =  720
+LayerDSFactor02 =  6
+
+LayerDSROILeft03 =    0
+LayerDSROITop03 =    0
+LayerDSROIWidth03 =  464
+LayerDSROIHeight03 =  262
+LayerDSROISrcWidth03 =  640
+LayerDSROISrcHeight03 =  360
+LayerDSFactor03 =  6
+
+LayerDSROILeft04 =    0
+LayerDSROITop04 =    0
+LayerDSROIWidth04 =  464
+LayerDSROIHeight04 =  262
+LayerDSROISrcWidth04 =  640
+LayerDSROISrcHeight04 =  360
+LayerDSFactor04 =  6
+
+LayerDSROILeft05 =    0
+LayerDSROITop05 =    0
+LayerDSROIWidth05 =  464
+LayerDSROIHeight05 =  262
+LayerDSROISrcWidth05 =  640
+LayerDSROISrcHeight05 =  360
+LayerDSFactor05 =  6
+
+LayerDSROILeft06 =    0
+LayerDSROITop06 =    0
+LayerDSROIWidth06 =  232
+LayerDSROIHeight06 =  130
+LayerDSROISrcWidth06 =  320
+LayerDSROISrcHeight06 =  180
+LayerDSFactor06 =  6
+
+LayerDSROILeft07 =    0
+LayerDSROITop07 =    0
+LayerDSROIWidth07 =  232
+LayerDSROIHeight07 =  130
+LayerDSROISrcWidth07 =  320
+LayerDSROISrcHeight07 =  180
+LayerDSFactor07 =  6
+
+LayerDSROILeft08 =    0
+LayerDSROITop08 =    0
+LayerDSROIWidth08 =  232
+LayerDSROIHeight08 =  130
+LayerDSROISrcWidth08 =  320
+LayerDSROISrcHeight08 =  180
+LayerDSFactor08 =  6
+
+LayerDSROILeft09 =    0
+LayerDSROITop09 =    0
+LayerDSROIWidth09 =  160
+LayerDSROIHeight09 =   90
+LayerDSROISrcWidth09 =  160
+LayerDSROISrcHeight09 =   90
+LayerDSFactor09 =  6
+
+LayerDSROILeft10 =    0
+LayerDSROITop10 =    0
+LayerDSROIWidth10 =  160
+LayerDSROIHeight10 =   90
+LayerDSROISrcWidth10 =  160
+LayerDSROISrcHeight10 =   90
+LayerDSFactor10 =  6
+
+LayerDSROILeft11 =    0
+LayerDSROITop11 =    0
+LayerDSROIWidth11 =  160
+LayerDSROIHeight11 =   90
+LayerDSROISrcWidth11 =  160
+LayerDSROISrcHeight11 =   90
+LayerDSFactor11 =  6
+
+LayerDSROILeft12 =    0
+LayerDSROITop12 =    0
+LayerDSROIWidth12 =   80
+LayerDSROIHeight12 =   44
+LayerDSROISrcWidth12 =   80
+LayerDSROISrcHeight12 =   44
+LayerDSFactor12 =  2
+
+LayerDSROILeft13 =    0
+LayerDSROITop13 =    0
+LayerDSROIWidth13 =   80
+LayerDSROIHeight13 =   44
+LayerDSROISrcWidth13 =   80
+LayerDSROISrcHeight13 =   44
+LayerDSFactor13 =  2
+
+LayerDSROILeft14 =    0
+LayerDSROITop14 =    0
+LayerDSROIWidth14 =   80
+LayerDSROIHeight14 =   44
+LayerDSROISrcWidth14 =   80
+LayerDSROISrcHeight14 =   44
+LayerDSFactor14 =  2
+
+LayerDSROILeft15 =    0
+LayerDSROITop15 =    0
+LayerDSROIWidth15 =   40
+LayerDSROIHeight15 =   22
+LayerDSROISrcWidth15 =   40
+LayerDSROISrcHeight15 =   22
+LayerDSFactor15 =  2
+
+LayerDSROILeft16 =    0
+LayerDSROITop16 =    0
+LayerDSROIWidth16 =   40
+LayerDSROIHeight16 =   22
+LayerDSROISrcWidth16 =   40
+LayerDSROISrcHeight16 =   22
+LayerDSFactor16 =  2
+
+LayerDSROILeft17 =    0
+LayerDSROITop17 =    0
+LayerDSROIWidth17 =   40
+LayerDSROIHeight17 =   22
+LayerDSROISrcWidth17 =   40
+LayerDSROISrcHeight17 =   22
+LayerDSFactor17 =  2
+
+LayerUSROILeft00 =    0
+LayerUSROITop00 =    0
+LayerUSROIWidth00 =  408
+LayerUSROIHeight00 =  228
+LayerUSROISrcWidth00 =  320
+LayerUSROISrcHeight00 =  180
+
+LayerUSROILeft01 =  100
+LayerUSROITop01 =  100
+LayerUSROIWidth01 =  508
+LayerUSROIHeight01 =  284
+LayerUSROISrcWidth01 =  320
+LayerUSROISrcHeight01 =  180
+
+LayerUSROILeft02 =   50
+LayerUSROITop02 =   50
+LayerUSROIWidth02 =  316
+LayerUSROIHeight02 =  196
+LayerUSROISrcWidth02 =  160
+LayerUSROISrcHeight02 =  100
+
+LayerUSROILeft03 =   40
+LayerUSROITop03 =   40
+LayerUSROIWidth03 =  508
+LayerUSROIHeight03 =  404
+LayerUSROISrcWidth03 =  200
+LayerUSROISrcHeight03 =  160
+
+LayerUSROILeft04 =   80
+LayerUSROITop04 =   80
+LayerUSROIWidth04 =  760
+LayerUSROIHeight04 =  568
+LayerUSROISrcWidth04 =  240
+LayerUSROISrcHeight04 =  180
+
+LayerUSROILeft05 =    0
+LayerUSROITop05 =    0
+LayerUSROIWidth05 =  792
+LayerUSROIHeight05 =  592
+LayerUSROISrcWidth05 =  200
+LayerUSROISrcHeight05 =  150
+
