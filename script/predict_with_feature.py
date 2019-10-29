@@ -21,8 +21,8 @@ import logging
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 
-root_dir = os.path.abspath(__file__).split('script')[0]
-sys.path.insert(0, root_dir + '/script')
+root_dir = os.path.abspath(__file__).split('Visualization')[0]
+sys.path.insert(0, root_dir + '/Visualization')
 
 from utils.pyramid_resizer.utils import img_pyramid_resizer
 from utils.pyramid_resizer.resizer import Resizer
