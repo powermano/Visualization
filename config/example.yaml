@@ -1,5 +1,5 @@
 input:
-  file_path: '/home/users/tao.cai/'
+  file_path: '/home/users/tao.cai/Visualization/input_file/badcase_outputs.txt'
   label: 5
   vector: '8, 135'
   picture_path: 0
