@@ -21,8 +21,8 @@ data type info:
 
 if __name__ == '__main__':
     is_parallel_run = True
-    save_feature = '0'
-    save_badcase = '0'
+    save_feature = '1'
+    save_badcase = '1'
 
     test_type = 'X1600_v2'
     test_file = '/home/users/tao.cai/aiot_face_anti_spoofing_tools/predict/test_list/{}_test.txt'.format(
@@ -34,9 +34,9 @@ if __name__ == '__main__':
     input_format = 'rgb'
     is_qnn = '0'
 
-    model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/0815/triplet_loss/margin-0.2/awl/'
+    model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/0815/triplet_loss/margin-0.2/awl-twice/'
     model_list = ['gpu']
-    epoch_list = [10]
+    epoch_list = [16]
     data_type_list = [4]
     expand_ratio_list = [1.5]
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
                 test_type, model, epoch, data_type, expand_ratio)
         else:
             prefix = model_dir + 'model-{}'.format(str(model))
-            work_dir = './results/{}/python3.4.5_0815_triplet_loss_fix_margin-0.2_awl_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
+            work_dir = './results/{}/python3.4.5_0815_triplet_loss_fix_margin-0.2_awl_twice_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
                         test_type, model, epoch, data_type, expand_ratio)
           #  work_dir = './results/{}/python3.4.5_0815_wobn_triplet_loss_margin-0.2_l2_wo_sum_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
           #               test_type, model, epoch, data_type, expand_ratio)

@@ -30,7 +30,7 @@ sys.path.insert(0, root_dir + '/script')
 
 class gen(base_gen):
     def __init__(self, args):
-        super(base_gen, self).__init__(args)
+        super(gen, self).__init__(args)
         self.parse_file_dir()
 
     def run(self):
