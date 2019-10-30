@@ -1,7 +1,7 @@
 input:
   file_path: '/home/users/tao.cai/'
   label: 5
-  verctor: '8, 135'
+  vector: '8, 135'
   picture_path: 0
   roi: '1, 4'
 
