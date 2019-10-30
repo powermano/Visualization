@@ -3,29 +3,22 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os
 import sys
-import cv2
 import numpy as np
 
 import argparse
 from tqdm import tqdm
-import mxnet as mx
 import cv2
 import pickle
 import os
 from mxboard import SummaryWriter
-import random
 import copy
 np.set_printoptions(threshold=np.inf)
 import mxnet as mx
 import random
 import time
-import copy
-import math
 import argparse
 import logging
-import shutil
 
 
 logging.basicConfig(level=logging.INFO,
@@ -84,7 +77,7 @@ class base_gen(object):
                     else:
                         resized_image = black_square
                 resized_images[i] = resized_image
-            s = list(map(int, t[vecstart:vecend + 1]))
+            s = list(map(float, t[vecstart:vecend + 1]))
 
             # convnet_codes[i] = mx.nd.array([s]).astype('uint8')
             convnet_codes[i] = mx.nd.array([s])
