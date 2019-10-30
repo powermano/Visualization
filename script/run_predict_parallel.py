@@ -25,7 +25,7 @@ if __name__ == '__main__':
     save_badcase = '1'
 
     test_type = 'X1600_v2'
-    test_file = '/home/users/tao.cai/Workspace/anti_spoofing/aiot_face_anti_spoofing_tools/predict/test_list/{}_test.txt'.format(
+    test_file = '/home/users/tao.cai/aiot_face_anti_spoofing_tools/predict/test_list/{}_test.txt'.format(
         test_type)
     save_file = './anti_spoofing_outputs.txt'
     gpus = '0'
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/0815/triplet_loss/margin-0.2/awl/'
     model_list = ['gpu']
-    epoch_list = [43]
+    epoch_list = [10]
     data_type_list = [4]
     expand_ratio_list = [1.5]
 
