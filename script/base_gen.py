@@ -46,9 +46,9 @@ class base_gen(object):
 
         length = len(lines)
         vecstart, vecend = list(map(int, self.config.input.vector.split(',')))
-        tagname = 'face_anti-spoofing'
+      #  tagname = 'face_anti-spoofing'
 
-        location = './logs'
+      #  location = './logs'
         rois = list(map(int, self.config.input.roi.split(',')))
 
         convnet_codes = None  # N * 1000
@@ -60,8 +60,10 @@ class base_gen(object):
         labels = mx.nd.ones(length, dtype='uint8')
         if not self.config.function.show_image:
             black_square = np.zeros((self.config.function.resize, self.config.function.resize, 3))
+            black_square = mx.nd.array(black_square).transpose((2, 0, 1)).expand_dims(axis=0).astype('uint8')
             red_square = np.zeros((self.config.function.resize, self.config.function.resize, 3))
             red_square[:, :, 0] = 255
+            red_square = mx.nd.array(red_square).transpose((2, 0, 1)).expand_dims(axis=0).astype('uint8')
         for i in tqdm(range(length)):
             t = lines[i].split()
             labels[i] = int(float(t[self.config.input.label]))
