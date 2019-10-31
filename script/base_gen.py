@@ -5,25 +5,16 @@ from __future__ import unicode_literals
 
 import sys
 import numpy as np
-
-import argparse
 from tqdm import tqdm
 import cv2
 import pickle
 import os
-from mxboard import SummaryWriter
-import copy
-np.set_printoptions(threshold=np.inf)
 import mxnet as mx
-import random
-import time
-import argparse
 import logging
-
+np.set_printoptions(threshold=np.inf)
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
-
 
 root_dir = os.path.abspath(__file__).split('script')[0]
 sys.path.insert(0, root_dir + '/script')

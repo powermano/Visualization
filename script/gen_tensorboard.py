@@ -2,15 +2,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-
-import os
 import sys
-import cv2
 import numpy as np
-
-np.set_printoptions(threshold=np.inf)
 import mxnet as mx
-import cv2
 import pickle
 import os
 from mxboard import SummaryWriter
@@ -20,6 +14,7 @@ import logging
 from utils.base_config import get_config
 from utils.utils import parse_args
 from script.base_gen import base_gen
+np.set_printoptions(threshold=np.inf)
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
