@@ -106,17 +106,31 @@ class AntiSpoofingPredictor():
             cv2.imwrite('./{}_feat/{}_channel_{}.png'.format(name, name, idx), save_img)
 
     def post_process_batch(self, outputs, imgs):
-        if outputs[1].shape[-1] == 1:
-            # probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
-            probs = mx.nd.reshape(outputs[1], (-1, 2))
-            probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
-            feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
-        elif outputs[1].shape[-1] == 2:
-            # probs = mx.nd.sigmoid(outputs[0][:, [1]], axis=1).asnumpy()
-            probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
-            feature_output = outputs[0].asnumpy()
-        else:
-            assert False, 'not support network outputs shape: {}'.format(outputs[0].shape)
+        try:
+            if outputs[1].shape[-1] == 1:
+                # probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
+                probs = mx.nd.reshape(outputs[1], (-1, 2))
+                probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
+            elif outputs[1].shape[-1] == 2:
+                # probs = mx.nd.sigmoid(outputs[0][:, [1]], axis=1).asnumpy()
+                probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                feature_output = outputs[0].asnumpy()
+            else:
+                assert False, 'not support network outputs shape: {}'.format(outputs[0].shape)
+        except:
+            if outputs[0].shape[-1] == 1:
+                probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
+                feature_output = probs
+            elif outputs[0].shape[-1] == 2:
+                probs = mx.nd.softmax(outputs[0]).asnumpy()
+                probs = probs.reshape((-1, 2))
+                probs = probs[:, 1]
+                feature_output = probs
+            else:
+                assert False, 'not support network outputs shape: {}'.format(
+                    outputs[0].shape)
+
         preds = probs.copy()
         preds[preds > self.config.thresh] = 1.0
         preds[preds <= self.config.thresh] = 0.0
