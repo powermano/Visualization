@@ -23,6 +23,9 @@ if __name__ == '__main__':
     is_parallel_run = True
     save_feature = '1'
     save_badcase = '0'
+    save_badcase = '1'
+    sigmoid = '0'
+    feature_name = 'func_conv_convolution0_output'
 
     test_type = 'X1600_v2'
     test_file = '/home/users/tao.cai/aiot_face_anti_spoofing_tools/predict/test_list/{}_test.txt'.format(
@@ -70,7 +73,9 @@ if __name__ == '__main__':
                                                                                          is_qnn,
                                                                                          now_dir,
                                                                                          save_feature,
-                                                                                         save_badcase)
+                                                                                         save_badcase,
+                                                                                         sigmoid,
+                                                                                         feature_name)
         print(command)
         if not is_parallel_run:
             os.system(command)

@@ -106,17 +106,37 @@ class AntiSpoofingPredictor():
             cv2.imwrite('./{}_feat/{}_channel_{}.png'.format(name, name, idx), save_img)
 
     def post_process_batch(self, outputs, imgs):
-        if outputs[1].shape[-1] == 1:
-            # probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
-            probs = mx.nd.reshape(outputs[1], (-1, 2))
-            probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
-            feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
-        elif outputs[1].shape[-1] == 2:
-            # probs = mx.nd.sigmoid(outputs[0][:, [1]], axis=1).asnumpy()
-            probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
-            feature_output = outputs[0].asnumpy()
-        else:
-            assert False, 'not support network outputs shape: {}'.format(outputs[0].shape)
+        try:
+            if outputs[1].shape[-1] == 1:
+                if self.config.sigmoid == '1':
+                    probs = mx.nd.reshape(outputs[1], (-1, 1))
+                    probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                    feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
+                else:
+                    # probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
+                    probs = mx.nd.reshape(outputs[1], (-1, 2))
+                    probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                    feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
+            elif outputs[1].shape[-1] == 2:
+                # probs = mx.nd.sigmoid(outputs[0][:, [1]], axis=1).asnumpy()
+                probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                feature_output = outputs[0].asnumpy()
+            else:
+                assert False, 'not support network outputs shape: {}'.format(outputs[0].shape)
+        except:
+            if outputs[0].shape[-1] == 1:
+                probs = mx.nd.reshape(outputs[1], (-1, 1))
+                probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
+                feature_output = probs
+            elif outputs[0].shape[-1] == 2:
+                probs = mx.nd.softmax(outputs[0]).asnumpy()
+                probs = probs.reshape((-1, 2))
+                probs = probs[:, 1]
+                feature_output = probs
+            else:
+                assert False, 'not support network outputs shape: {}'.format(
+                    outputs[0].shape)
+
         preds = probs.copy()
         preds[preds > self.config.thresh] = 1.0
         preds[preds <= self.config.thresh] = 0.0
@@ -181,6 +201,20 @@ class AntiSpoofingPredictor():
 
         logging.info('Loading model...')
         sym, arg_params, aux_params = mx.model.load_checkpoint(self.config.prefix, self.config.epoch)
+        if self.config.save_feature == '1' and self.config.sigmoid == '1':
+            internals = sym.get_internals()
+            internals_name_list = []
+            for internals_name in internals.list_outputs():
+                if 'output' in internals_name:
+                    internals_name_list.append(internals_name)
+            logging.info('\nSelect embedding feature name in {}'.format(
+                internals_name_list))
+            embedding_feature_name = self.config.train.get(
+                'feature_name', None)
+            embedding_feature = internals_name_list[embedding_feature_name]
+            sym = mx.sym.Group([embedding_feature, sym])
+
+
         mod = mx.mod.Module(symbol=sym, context=ctx, label_names=None)
         if self.config.is_qnn:
             mod.bind(for_training=False,
@@ -700,8 +734,10 @@ def parse_args():
     parser.add_argument('--thresh', help='thresh', required=False, type=float, default=0.5)
     parser.add_argument('--is-qnn', help='whether to use qnn predict.', required=False, type=int, default=0)
     parser.add_argument('--save_feature', help='whether to save feature for visualization', required=False, type=str,
-                        default=False)
-    parser.add_argument('--save_badcase', help='whether to save badcase', required=False, type=str, default=False)
+                        default='0')
+    parser.add_argument('--save_badcase', help='whether to save badcase', required=False, type=str, default='0')
+    parser.add_argument('--sigmoid', help='whether to output one value', required=False, type=str, default='1')
+    parser.add_argument('--feature_name', help='the name of feature map', required=False, type=str, default='func_conv_convolution0_output')
 
     return parser.parse_args()
 

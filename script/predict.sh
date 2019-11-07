@@ -13,6 +13,8 @@ is_qnn=${11}
 now_dir=${12}
 save_feature=${13}
 save_badcase=${14}
+sigmoid=${15}
+feature_name=${16}
 
 python ${now_dir}/../../../predict_with_feature.py \
     --file ${file} \
@@ -27,5 +29,7 @@ python ${now_dir}/../../../predict_with_feature.py \
     --expand-ratio ${expand_ratio} \
     --is-qnn ${is_qnn} \
     --save_feature ${save_feature} \
-    --save_badcase ${save_badcase}
+    --save_badcase ${save_badcase} \
+    --sigmoid ${sigmoid} \
+    --feature_name ${feature_name}
 
