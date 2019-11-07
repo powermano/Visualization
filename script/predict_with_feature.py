@@ -110,7 +110,7 @@ class AntiSpoofingPredictor():
             if outputs[1].shape[-1] == 1:
                 if self.config.sigmoid == '1':
                     probs = mx.nd.reshape(outputs[1], (-1, 1))
-                    probs = mx.nd.softmax(outputs[1], axis=1)[:, 1].asnumpy()
+                    probs = mx.nd.softmax(outputs[1], axis=1).asnumpy()
                     feature_output = (mx.nd.sum(mx.nd.transpose(outputs[0], (0, 2, 3, 1)), axis=(1, 2)) / 4).asnumpy()
                 else:
                     # probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
@@ -125,8 +125,8 @@ class AntiSpoofingPredictor():
                 assert False, 'not support network outputs shape: {}'.format(outputs[0].shape)
         except:
             if outputs[0].shape[-1] == 1:
-                probs = mx.nd.reshape(outputs[1], (-1, 1))
-                probs = mx.nd.sigmoid(outputs[1], axis=1).asnumpy()
+                probs = mx.nd.reshape(outputs[0], (-1, 1))
+                probs = mx.nd.sigmoid(outputs[0], axis=1).asnumpy()
                 feature_output = probs
             elif outputs[0].shape[-1] == 2:
                 probs = mx.nd.softmax(outputs[0]).asnumpy()
@@ -207,11 +207,10 @@ class AntiSpoofingPredictor():
             for internals_name in internals.list_outputs():
                 if 'output' in internals_name:
                     internals_name_list.append(internals_name)
-            logging.info('\nSelect embedding feature name in {}'.format(
-                internals_name_list))
-            embedding_feature_name = self.config.train.get(
-                'feature_name', None)
-            embedding_feature = internals_name_list[embedding_feature_name]
+        #    logging.info('\nSelect embedding feature name in {}'.format(
+        #        internals_name_list))
+            embedding_feature_name = self.config.feature_name
+            embedding_feature = internals[embedding_feature_name]
             sym = mx.sym.Group([embedding_feature, sym])
 
 
