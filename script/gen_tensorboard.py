@@ -14,6 +14,7 @@ import logging
 from utils.base_config import get_config
 from utils.utils import parse_args
 from script.base_gen import base_gen
+import json
 np.set_printoptions(threshold=np.inf)
 
 logging.basicConfig(level=logging.INFO,
@@ -39,27 +40,38 @@ class gen(base_gen):
 
         data2 = []
         k2 = []
-        if self.config.function.shownum != 0:
-            anlist = []
-            polist = []
-            for i in list_index:
-                if labels[i] == 1:
-                    anlist.append(i)
-                else:
-                    polist.append(i)
-            keys = random.sample(anlist, max(self.config.function.shownum, len(anlist))) + random.sample(polist,
-                                            max(self.config.function.shownum, len(polist)))
+       # if int(self.config.function.shownum) != 0:
+      #  if True:
+        print('here')
+        anlist = []
+        polist = []
+        for i in list_index:
+            if labels[i] == 1:
+                anlist.append(i)
+            else:
+                polist.append(i)
+        if not os.path.exists(self.config.function.keys_path):
+            logging.info('Saving keys to keys.json')
+            keys = random.sample(anlist, min(self.config.function.shownum, len(anlist))) + random.sample(polist,
+                                            min(self.config.function.shownum, len(polist)))
             keys.sort()
-
-            resized_images = resized_images[keys]
-            convnet_codes = convnet_codes[keys]
-            labels = labels[keys].asnumpy()
-            for i in keys:
-                data2.append(copy.copy(data1[i]))
+            with open(self.config.function.keys_path, 'w') as f:
+                json.dump(keys, f)
+            logging.info('Successfully saving keys')
         else:
-            labels = labels.asnumpy()
-            data2 = data1
-        # print (convnet_codes.shape,len(data2),labels.shape,resized_images.shape)
+            logging.info('Loading keys.json')
+            with open(self.config.function.keys_path, 'r') as f:
+            	keys = json.load(f)
+            logging.info('Successfully loading keys')
+        resized_images = resized_images[keys]
+        convnet_codes = convnet_codes[keys]
+        labels = labels[keys].asnumpy()
+        for i in keys:
+            data2.append(copy.copy(data1[i]))
+     #   else:
+     #       labels = labels.asnumpy()
+     #       data2 = data1
+        print (convnet_codes.shape,len(data2),labels.shape,resized_images.shape)
         with SummaryWriter(logdir=self.config.function.location) as sw:
             sw.add_image(tag=self.config.function.tagname, image=resized_images)
             # print (convnet_codes.shape,len(data2),labels.shape,resized_images.shape)
@@ -79,7 +91,8 @@ def main():
     config = get_config(args)
     gen_example = gen(config)
     gen_example.run()
-
+    command = 'rm -r ./tmps'
+    os.system(command)
 
 
 if __name__ == '__main__':

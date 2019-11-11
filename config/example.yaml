@@ -1,16 +1,19 @@
 input:
-  file_path: '/home/users/tao.cai/Visualization/input_file/badcase_outputs.txt'
+ # file_path: '/home/users/tao.cai/Visualization/input_file/awl-l2-wo-sum-ratio-2/anti_spoofing_outputs.txt'
+  file_path: '/home/users/tao.cai/Visualization/input_file/baseline/anti_spoofing_outputs.txt'
   label: 5
   vector: '8, 135'
   picture_path: 0
   roi: '1, 4'
 
 function:
-  resize: 4
-  shownum: 0
+  resize: 1
+  shownum: 5000
   noimage: 0
   show_image: False
   save_tmp: True
-  location: './logs'
+  location: './logs_5000_baseline_float'
   tagname: 'face_anti-spoofing'
+  keys_path: './keys.json'
+  feature_type: 'float'
 

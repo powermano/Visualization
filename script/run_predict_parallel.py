@@ -22,8 +22,8 @@ data type info:
 if __name__ == '__main__':
     is_parallel_run = True
     save_feature = '1'
-    save_badcase = '0'
-    sigmoid = '1'
+    save_badcase = '1'
+    sigmoid = '0'
     feature_name = 'func_conv_convolution0_output'
 
     test_type = 'X1600_v2'
@@ -36,10 +36,10 @@ if __name__ == '__main__':
     input_format = 'yuv'
     is_qnn = '0'
 
-   # model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/wobn/triplet_loss/margin-0.2/awl-l2-wo-sum-ratio-1.5-twice/'
-    model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/wobn/new_baseline/'
+    model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/wobn/triplet_loss/margin-0.2/awl-l2-wo-sum-ratio-2-twice/'
+  #  model_dir = '/home/users/tao.cai/Workspace/anti_spoof/gluonface/wobn/new_baseline_true/first/'
     model_list = ['gpu']
-    epoch_list = [55]
+    epoch_list = [48]
     data_type_list = [4]
     expand_ratio_list = [1.5]
 
@@ -52,7 +52,7 @@ if __name__ == '__main__':
             prefix = model_dir + 'model-{}'.format(str(model))
           #  work_dir = './results/{}/python3.4.5_0815_triplet_loss_fix_margin-0.2_awl_l2_wo_sum_twice_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
          #               test_type, model, epoch, data_type, expand_ratio)
-            work_dir = './results/{}/python3.4.5_0815_wobn_triplet_loss_new_baseline_feature_no_margin-0.2_l2_wo_sum_ratio_1.5_twice_feature_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
+            work_dir = './results/{}/python3.4.5_0815_wobn_triplet_loss_margin-0.2_l2_wo_sum_ratio_2_twice_feature_and_badcase_gpu_model{}_epoch{}_dataType{}_expandRatio{}'.format(
                          test_type, model, epoch, data_type, expand_ratio)
         if not os.path.exists(work_dir):
             os.makedirs(work_dir)

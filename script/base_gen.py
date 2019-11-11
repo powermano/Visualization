@@ -40,7 +40,7 @@ class base_gen(object):
         labels = []
         tag = []
         resized_images = mx.nd.ones((length, 3, self.config.function.resize, self.config.function.resize), dtype='uint8')
-        convnet_codes = mx.nd.ones((length, vecend - vecstart + 1), dtype='uint8')
+        convnet_codes = mx.nd.ones((length, vecend - vecstart + 1))
         labels = mx.nd.ones(length, dtype='uint8')
         if not self.config.function.show_image:
             black_square = np.zeros((self.config.function.resize, self.config.function.resize, 3))
@@ -68,7 +68,11 @@ class base_gen(object):
                     else:
                         resized_image = black_square
                 resized_images[i] = resized_image
-            s = list(map(float, t[vecstart:vecend + 1]))
+            if self.config.function.feature_type == 'int':
+              #  logging.info('Use int feature type')
+                s = list(map(int, map(float, t[vecstart:vecend + 1])))
+            else:
+                s = list(map(float, t[vecstart:vecend + 1]))
 
             # convnet_codes[i] = mx.nd.array([s]).astype('uint8')
             convnet_codes[i] = mx.nd.array([s])
